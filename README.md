@@ -1,4 +1,4 @@
-# 🚗 Chicago Car Crashes Analysis (2023)  
+#  Chicago Car Crashes Analysis (2021-2023)  
 *Predicting crash causes to improve road safety*  
 
 **Last Updated**: 7/20/2025
@@ -64,7 +64,7 @@
 
 ---
 
-## ⚠️ Known Issues  
+##  Known Issues  
 1. **Timezone inconsistency**: Crash times don’t account for daylight savings. *(Will normalize in v2)*  
 2. **Underreporting**: Minor crashes may be missing.  
 
