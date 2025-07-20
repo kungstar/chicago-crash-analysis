@@ -1,71 +1,37 @@
-#  Chicago Car Crashes Analysis (2021-2023)  
-*Predicting crash causes to improve road safety*  
+# Chicago Car Crash Analysis (2021-2023)
 
-**Last Updated**: 7/20/2025
-**Author**: Washington Kungu
+## Project Goal
+Help the Chicago Department of Transportation reduce preventable accidents by identifying patterns in crash causes and predicting high-risk scenarios.
 
----
+## Data Sources
+- Primary dataset: [Chicago Crash Reports (2021-2023)](https://data.cityofchicago.org/Transportation/Traffic-Crashes-Crashes/85ca-t3if)
+- Supplementary data: [Vehicles](https://data.cityofchicago.org/Transportation/Traffic-Crashes-Vehicles/68nd-jvt3) and [People Involved](https://data.cityofchicago.org/Transportation/Traffic-Crashes-People/u6pd-qa9d)
 
-##  Project Overview  
-**Goal**: Help the Chicago Department of Transportation (CDOT) reduce accidents by:  
-1. Identifying the most common causes of crashes between 2021-2023
-2. Building a model to predict high-risk scenarios  
-3. Recommending data-driven interventions  
+## Key Steps
 
-**Originally, I planned to analyze 10 years of data, but my laptop couldn’t handle the 5GB file. Switched to **2021-2023 only** (smarter sampling!).  
+### 1. Data Preparation
+- Filtered to 2021-2023 data due to hardware limitations
+- Grouped 50+ crash causes into 8 main categories
+- Handled missing weather/road condition data
 
----
+### 2. Analysis
+- Found 4-6 PM as peak crash hours (22% of incidents)
+- Identified rain as increasing road-related crashes by 1.8x
+- Noted DUI crashes are rare (3%) but severe
 
-##  Data Sources  
-1. **Main Dataset**: [Chicago Traffic Crashes (2021-2023)](https://data.cityofchicago.org/Transportation/Traffic-Crashes-Crashes/85ca-t3if)  
-   - Key columns: `CRASH_DATE`, `PRIMARY_CONTRIBUTORY_CAUSE`, `WEATHER_CONDITION`  
+### 3. Modeling
+- Built Logistic Regression baseline (68% accuracy)
+- Improved with Random Forest (72% accuracy)
+- Focused on predicting: Failure to Yield, Distraction, Speeding
 
-2. **Supplementary Data**:  
-   - [Vehicles](https://data.cityofchicago.org/Transportation/Traffic-Crashes-Vehicles/68nd-jvt3)  
-   - [People Involved](https://data.cityofchicago.org/Transportation/Traffic-Crashes-People/u6pd-qa9d)  
+## How to Use This Repository
 
----
+### Files
+- `analysis.ipynb`: Full Python analysis notebook
+- `presentation.pdf`: Non-technical summary for stakeholders
+- `/data`: Contains raw CSV files (not committed)
 
-##  Key Questions  
-1. What’s the **#1 preventable cause** of crashes?  
-2. Do **rainy days** double distraction-related crashes? 
-3. Can we predict **DUI-related crashes** before they happen?  
-
----
-
-##  Methodology  
-### Data Cleaning  
-- Grouped 50+ crash causes into **8 categories** (e.g., "PHONE" → "DISTRACTION")  
-- Handled missing values in `WEATHER_CONDITION` by labeling them as "UNKNOWN" 
-
-### Modeling  
-- Algorithms tested:  
-  1. **Logistic Regression** (Baseline)  
-  2. **Random Forest** (Best performance)  
-  3. **XGBoost** (Overfit, discarded)  
-
----
-
-##  Preliminary Findings  
-| Insight | Impact |  
-|---------|--------|  
-| **4-6 PM** = 22% of crashes | Rush hour interventions needed |  
-| **Rain** increases road-related crashes by 1.8x | Pre-storm road treatments advised |  
-| **DUI crashes** are rare (3%) but severe | Hard to predict – need more data |  
-
-
-
----
-
-##  Next Steps  
-1. Merge vehicle/people data (WIP)  
-2. Optimize model for **rare classes** (DUI, road conditions)  
-3. Build interactive dashboard for CDOT  
-
----
-
-##  Known Issues  
-1. **Timezone inconsistency**: Crash times don’t account for daylight savings. *(Will normalize in v2)*  
-2. **Underreporting**: Minor crashes may be missing.  
-
----
+### Setup
+1. Install requirements:
+   ```bash
+   pip install pandas scikit-learn
